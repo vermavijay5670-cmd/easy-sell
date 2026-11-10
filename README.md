@@ -58,8 +58,8 @@ Pick a folder, for example `E:\projects`, then:
 
 ```
 cd /d E:\projects
-git clone https://github.com/vermavijay5670-cmd/Selling-website.git selling-website
-cd selling-website
+git clone https://github.com/vermavijay5670-cmd/easy-sell.git easy-sell
+cd easy-sell
 npm install
 ```
 
@@ -115,21 +115,36 @@ All the database files are in the project folder. For **each file below, in this
 
 | # | File | What it does |
 |---|------|--------------|
-| 1 | `supabase-schema.sql` | Creates the products and orders tables and adds 24 sample products |
+| 1 | `supabase-schema.sql` | Creates the products and orders tables and adds 24 sample products. Orders stay locked until file 2. |
 | 2 | `supabase-migration-customer-auth.sql` | Customer accounts, order history, the admin list, access rules |
 | 3 | `supabase-migration-order-safety.sql` | Server-side prices, stock reduction, limit of 5 pending orders |
 | 4 | `supabase-migration-products.sql` | Admin can delete products, photo storage for product pictures |
 | 5 | `supabase-migration-settings.sql` | Shop name, banner, categories, contact details, reviews |
 | 6 | `supabase-migration-admin-orders.sql` | Fast dashboard numbers and order list |
 | 7 | `supabase-migration-customer-cancel.sql` | Lets customers cancel their own pending orders |
-| 8 | `supabase-migration-hardening.sql` | Abuse limits (per phone / per hour), field size limits, throttled order tracking, hides inactive products |
-| 9 | `supabase-migration-telegram.sql` | Telegram alerts. **Do this one later, in step 9.** |
+| 8 | `supabase-migration-grants.sql` | **Required on new Supabase projects.** Lets the website reach the tables (see the note below) |
+| 9 | `supabase-migration-hardening.sql` | Abuse limits (per phone / per hour), field size limits, throttled order tracking, hides inactive products |
+| 10 | `supabase-migration-telegram.sql` | Telegram alerts. **Do this one later, in step 9 below.** |
 
 Notes:
+- **Do not skip file 8.** Newer Supabase projects do not give tables created in the SQL Editor to the website automatically. Without it, every request fails with "permission denied": admin login says "does not have admin access" and orders say "Could not place your order", even though the data looks correct in Supabase.
 - Every file is safe to run again. Running one twice never deletes data.
 - If a file says something "already exists", that's fine.
-- Run them in the order shown. Files 4 to 8 need file 2, and file 8 also needs file 3.
+- Run them in the order shown. File 9 stops with a clear message if files 2 or 3 haven't been run.
 - After you update the project in the future, re-run the files that changed (see [Updating the website later](#updating-the-website-later)).
+
+**Check that it worked.** After file 9, run this in the SQL Editor. Every column must say `true`:
+
+```sql
+select
+  has_table_privilege('authenticated', 'public.orders', 'INSERT')  as orders_insert,
+  has_table_privilege('authenticated', 'public.admins', 'SELECT')  as admins_read,
+  has_table_privilege('anon', 'public.products', 'SELECT')         as products_read,
+  to_regprocedure('public.is_admin()') is not null                 as is_admin_function,
+  to_regclass('public.track_attempts') is not null                 as hardening_applied;
+```
+
+If `orders_insert`, `admins_read` or `products_read` is `false`, run file 8 again. If `is_admin_function` is `false`, run file 2. If `hardening_applied` is `false`, run file 9.
 
 The 24 sample products are vegetables and spices with stock photos. The client should replace them with their real products from the admin panel.
 
@@ -140,7 +155,7 @@ The 24 sample products are vegetables and spices with stock photos. The client s
 In Supabase go to **Authentication**:
 
 1. **Sign In / Providers → Email:** make sure Email is turned on.
-   - **Confirm email:** if this is on, new customers must click a link in an email before they can log in. Supabase's built-in email service only sends a few emails per hour, so on a busy shop this will fail. For a small shop, **turn Confirm email off**, or connect your own email service later.
+   - **Confirm email:** if this is on, new customers must click a link in an email before they can log in. This is the best protection against fake accounts filling up your orders and using up your stock. Supabase's built-in email service only sends a few emails per hour, so for a real shop **turn it on and connect your own email service** (Authentication → Emails → SMTP Settings). While you are only testing, you can leave it off, but turn it on before the shop goes public. If it stays off, the per-phone and per-hour order limits from file 9 are the only protection against abuse.
 2. **URL Configuration:**
    - **Site URL:** `http://localhost:5173` for now (change it to your real website address in step 10).
    - **Redirect URLs:** add `http://localhost:5173/**`
@@ -181,7 +196,7 @@ Open http://localhost:5173 in your browser.
 1. Open http://localhost:5173/admin and log in with the admin account. You should reach the dashboard.
 2. **Shop Settings:** set the shop name, the banner text, the categories, and your phone, address and email. These are empty until you fill them in, and empty details are hidden on the site.
 3. **Manage Products:** replace the sample products with real ones. Use **Add Product**, and **Take Photo** or **Upload from Device** for the picture. Products still using a sample photo show an orange "stock photo" tag.
-4. Open the shop in a private window, sign up as a customer, add products to the cart and place a test order.
+4. Open the shop in a private window, sign up as a customer, add products to the cart and place a test order. If this says "Could not place your order", run the check query from step 5 and press F12 → Console for the exact error.
 5. In admin **Orders**, open the test order and change its status. The customer's My Orders page updates.
 
 ---
@@ -307,7 +322,9 @@ An extra database-level test for developers is described in `tests/README.md`.
 | "Supabase not configured yet" when signing up or logging in | The URL or key is missing. Check `.env` (names spelled exactly, no quotes) and restart `npm run dev`. On Vercel, add the two variables and **Redeploy**. |
 | `'vitest' is not recognized` | Run `npm install` in the project folder. |
 | `npm install` or `npm run dev` errors about Node | Install Node 20.19+ or 22.12+ and try again. |
-| Admin login says "does not have admin access" | The account isn't in the `admins` table. Do step 7 (the INSERT) with the exact email. |
+| Admin login says "does not have admin access" | Two possible causes. (1) The account isn't in the `admins` table: do step 7 (the INSERT) with the exact email. (2) The `admins` row is there but the website can't read it: run `supabase-migration-grants.sql` (step 5, file 8). |
+| "Could not place your order" with no other message | Usually missing table permissions: run `supabase-migration-grants.sql`, then run the check query in step 5. If it still fails, press F12 → Console and read the `Order save failed:` line. |
+| "Shop is not set up yet" on the live site | The two `VITE_` variables are missing on Vercel. Add them and **Redeploy** (step 10). |
 | Page shows 404 after refreshing on Vercel | Make sure `vercel.json` is in the project root and redeploy. |
 | Customer signup works but no email arrives, or "email rate limit" | Turn off **Confirm email** (step 6) or connect your own email service in Supabase. |
 | Password-reset link doesn't work | Add the site address to **Redirect URLs** (step 6 / step 10). |
@@ -315,7 +332,9 @@ An extra database-level test for developers is described in `tests/README.md`.
 | Shop Settings page says "Couldn't load the current settings" | Run `supabase-migration-settings.sql`, then refresh. |
 | Dashboard numbers stop at 1000 orders | Run `supabase-migration-admin-orders.sql`. |
 | "Not enough stock" or a product disappears from the cart | Expected. The cart syncs with live stock and prices. |
-| "You already have 5 orders waiting" | A customer can have at most 5 pending orders. They can cancel one or wait for confirmation. |
+| "You already have 5 orders waiting" / "This phone number already has 5 orders waiting" | At most 5 pending orders per customer and per phone number. They can cancel one or wait for confirmation. |
+| "You have placed many orders in the last hour" | Limit of 10 orders per customer per hour. They can try again later or call the shop. |
+| Order tracking says "Too many attempts" | 15 look-ups per phone number per 10 minutes. Wait a few minutes. |
 | No Telegram message | See step 9E for what each log error means. |
 | Changes to `.env` don't apply | Stop `npm run dev` (Ctrl+C) and start it again. On Vercel, redeploy. |
 
@@ -327,6 +346,8 @@ An extra database-level test for developers is described in `tests/README.md`.
 - Only use the **publishable (anon)** key in the website. Never put a `secret` or `service_role` key in any `VITE_` variable, because those values are visible to everyone who opens the site.
 - The Telegram token and webhook secret live only in Supabase Edge Function secrets.
 - Prices, totals and stock are decided by the database, not the browser.
+- Order limits (per customer, per phone number, per hour) and field size limits are enforced by the database (file 9). Turn on **Confirm email** (step 6) before going public.
+- The `app_secrets` table (Telegram webhook secret) is deliberately not granted to the website. Don't add grants for it.
 - Only users listed in the `admins` table can use the admin panel.
 - Use a strong password for the admin account. Anyone with it can see all customer details.
 
@@ -344,7 +365,7 @@ src/
   __tests__/        Automatic tests
 supabase/functions/notify-order/   Telegram alert function
 supabase-schema.sql                First database file
-supabase-migration-*.sql           Database updates, run in the order in step 5
+supabase-migration-*.sql           Database updates, run in the order in step 5 (grants and hardening are part of the set)
 tests/                             Optional database-level tests
 vercel.json, public/_redirects     Make direct links work on hosting
 ```
