@@ -37,36 +37,17 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 -- 3. ROW LEVEL SECURITY
+-- Locked by default: orders has NO policies here, so nobody can read or write orders
+-- until supabase-migration-customer-auth.sql adds the proper ones (own orders / admin only).
+-- Products start publicly readable; supabase-migration-hardening.sql later hides inactive ones.
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 
--- Allow anyone to INSERT orders (customers placing orders)
-CREATE POLICY "Anyone can place orders"
-  ON orders FOR INSERT
-  WITH CHECK (true);
-
--- Only authenticated users (admin) can SELECT/UPDATE orders
-CREATE POLICY "Admin can view all orders"
-  ON orders FOR SELECT
-  USING (auth.role() = 'authenticated');
-
-CREATE POLICY "Admin can update orders"
-  ON orders FOR UPDATE
-  USING (auth.role() = 'authenticated');
-
--- Anyone can read products
-CREATE POLICY "Anyone can view products"
-  ON products FOR SELECT
-  USING (true);
-
--- Only authenticated users (admin) can update products
-CREATE POLICY "Admin can update products"
-  ON products FOR UPDATE
-  USING (auth.role() = 'authenticated');
-
-CREATE POLICY "Admin can insert products"
-  ON products FOR INSERT
-  WITH CHECK (auth.role() = 'authenticated');
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE schemaname = 'public' AND tablename = 'products' AND policyname = 'Anyone can view products') THEN
+    CREATE POLICY "Anyone can view products" ON products FOR SELECT USING (true);
+  END IF;
+END $$;
 
 -- 4. SEED INITIAL PRODUCTS
 INSERT INTO products (id, name, category, price, unit, stock, image, description, badge, active) VALUES

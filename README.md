@@ -122,12 +122,13 @@ All the database files are in the project folder. For **each file below, in this
 | 5 | `supabase-migration-settings.sql` | Shop name, banner, categories, contact details, reviews |
 | 6 | `supabase-migration-admin-orders.sql` | Fast dashboard numbers and order list |
 | 7 | `supabase-migration-customer-cancel.sql` | Lets customers cancel their own pending orders |
-| 8 | `supabase-migration-telegram.sql` | Telegram alerts. **Do this one later, in step 9.** |
+| 8 | `supabase-migration-hardening.sql` | Abuse limits (per phone / per hour), field size limits, throttled order tracking, hides inactive products |
+| 9 | `supabase-migration-telegram.sql` | Telegram alerts. **Do this one later, in step 9.** |
 
 Notes:
 - Every file is safe to run again. Running one twice never deletes data.
 - If a file says something "already exists", that's fine.
-- Run them in the order shown. Files 4 to 7 need file 2.
+- Run them in the order shown. Files 4 to 8 need file 2, and file 8 also needs file 3.
 - After you update the project in the future, re-run the files that changed (see [Updating the website later](#updating-the-website-later)).
 
 The 24 sample products are vegetables and spices with stock photos. The client should replace them with their real products from the admin panel.

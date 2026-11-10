@@ -23,7 +23,7 @@ export default function TrackOrder() {
     setLoading(true)
     const { data, error: err } = await supabase.rpc('track_order', { p_order: id, p_phone: phone })
     setLoading(false)
-    if (err) return setError('Could not look up the order right now. Please try again.')
+    if (err) return setError(/too many attempts/i.test(err.message || '') ? err.message : 'Could not look up the order right now. Please try again.')
     if (!data || data.length === 0) return setError('No order found. Check the Order ID and phone number.')
     setOrder(data[0])
   }

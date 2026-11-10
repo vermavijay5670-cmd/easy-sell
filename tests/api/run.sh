@@ -24,7 +24,7 @@ run_sql() { psql "$DB_URL" -q -v ON_ERROR_STOP=1 -f "$1" 2>&1 | grep -v -E "NOTI
 run_sql tests/api/shim.sql
 for f in supabase-schema supabase-migration-customer-auth supabase-migration-order-safety \
          supabase-migration-products supabase-migration-settings supabase-migration-admin-orders \
-         supabase-migration-customer-cancel; do run_sql "$f.sql"; done
+         supabase-migration-customer-cancel supabase-migration-hardening; do run_sql "$f.sql"; done
 # telegram migration with dummy values (pg_net is stubbed by shim.sql)
 sed -e "s/YOUR_PROJECT_REF/abc123/g; s/YOUR_WEBHOOK_SECRET/s3cret/g; s/^CREATE EXTENSION.*//" supabase-migration-telegram.sql > "$TMP/tg.sql"
 run_sql "$TMP/tg.sql"
