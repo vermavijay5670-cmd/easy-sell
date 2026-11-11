@@ -3,7 +3,7 @@ import { Plus, Minus } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 import toast from 'react-hot-toast'
 
-const NO_PHOTO = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><rect width="300" height="300" fill="#f3f4f6"/><text x="150" y="160" font-size="48" text-anchor="middle">🌿</text></svg>')
+const NO_PHOTO = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><rect width="300" height="300" fill="#f3f4f6"/><text x="150" y="160" font-size="48" text-anchor="middle">🍽️</text></svg>')
 
 export default function ProductCard({ product }) {
   const { cart, addToCart, updateQuantity } = useCart()
@@ -29,7 +29,7 @@ export default function ProductCard({ product }) {
       {/* Image */}
       <Link to={`/products/${product.id}`} className="relative overflow-hidden">
         <img
-          src={product.image}
+          src={product.image || NO_PHOTO}
           alt={product.name}
           className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"

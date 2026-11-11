@@ -5,18 +5,25 @@ import { useSettings } from '../context/SettingsContext'
 import ProductCard from '../components/ProductCard'
 
 const features = [
+  { icon: '🌱', label: 'Compostable' },
+  { icon: '💧', label: 'Leak-resistant' },
+  { icon: '🔥', label: 'Microwave Safe' },
+  { icon: '📦', label: 'Bulk Rates' },
   { icon: '🚚', label: 'Home Delivery' },
-  { icon: '✅', label: 'Quality Products' },
-  { icon: '💰', label: 'Best Prices' },
-  { icon: '🔒', label: 'Secure Orders' },
 ]
 
 const whyUs = [
-  { icon: <Leaf className="w-7 h-7 text-green-600" />, title: 'Everything in One Place', desc: 'Staples, spices, fresh produce, snacks and household needs. Your whole monthly list from a single shop.' },
-  { icon: <Truck className="w-7 h-7 text-orange-500" />, title: 'Home Delivery', desc: 'Order online and get your groceries delivered to your doorstep. No need to step out.' },
-  { icon: <Shield className="w-7 h-7 text-green-600" />, title: 'Quality Assured', desc: 'Every item is carefully inspected for quality before being packed and sent to you.' },
+  { icon: <Leaf className="w-7 h-7 text-green-600" />, title: 'Made from Plants & Paper', desc: 'Areca palm leaf, sugarcane bagasse and food-grade paper. No plastic, and it breaks down after use.' },
+  { icon: <Shield className="w-7 h-7 text-green-600" />, title: 'Strong & Food-Safe', desc: 'Holds hot gravy, oily food and cold drinks without bending or leaking. Safe for food.' },
+  { icon: <Truck className="w-7 h-7 text-orange-500" />, title: 'Retail & Bulk Orders', desc: 'A single pack for a family function or cartons for a caterer. Order online and we deliver.' },
 ]
 
+const occasions = [
+  { icon: '💍', label: 'Weddings & Functions' },
+  { icon: '🎂', label: 'Birthdays & Parties' },
+  { icon: '🍛', label: 'Restaurants & Caterers' },
+  { icon: '🥡', label: 'Takeaway & Street Food' },
+]
 
 export default function Home() {
   const { products } = useProducts()
@@ -30,9 +37,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-green-700 via-green-600 to-emerald-500 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 text-9xl">🌿</div>
-          <div className="absolute bottom-10 right-10 text-9xl">🥕</div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[200px]">🌱</div>
+          <div className="absolute top-10 left-10 text-9xl">🍃</div>
+          <div className="absolute bottom-10 right-10 text-9xl">🍽️</div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[200px]">🌾</div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 text-white text-sm px-4 py-1.5 rounded-full mb-6">
@@ -72,7 +79,7 @@ export default function Home() {
       {/* Categories */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Shop by Category</h2>
-        <p className="text-gray-500 mb-8">Find exactly what you need</p>
+        <p className="text-gray-500 mb-8">Plates, bowls, cups and more</p>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
           {categories.slice(1).map(cat => (
             <Link
@@ -84,6 +91,21 @@ export default function Home() {
               <span className="text-xs font-medium text-gray-600 text-center">{cat.name}</span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Occasions */}
+      <section className="bg-green-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">Perfect for Every Occasion</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {occasions.map(o => (
+              <Link key={o.label} to="/products" className="flex flex-col items-center gap-2 p-5 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow text-center">
+                <span className="text-4xl">{o.icon}</span>
+                <span className="text-sm font-medium text-gray-700">{o.label}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -110,7 +132,7 @@ export default function Home() {
       {/* Why Choose Us */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">Why Choose {shopName}?</h2>
-        <p className="text-gray-500 text-center mb-10">We are committed to your health and satisfaction</p>
+        <p className="text-gray-500 text-center mb-10">Good for your event, good for the planet</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {whyUs.map((item, i) => (
             <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow text-center">
@@ -121,6 +143,18 @@ export default function Home() {
               <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Bulk order call-to-action */}
+      <section className="bg-green-800 text-white">
+        <div className="max-w-4xl mx-auto px-4 py-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">Need plates in bulk?</h2>
+          <p className="text-green-100 mb-6">Planning a wedding, event or a restaurant order? Call us for special bulk rates.</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link to="/products" className="bg-orange-500 hover:bg-orange-600 font-semibold px-6 py-3 rounded-full transition-colors">Browse Products</Link>
+            {settings.phone && <a href={`tel:${String(settings.phone).replace(/[^\d+]/g, '')}`} className="bg-white/15 hover:bg-white/25 font-semibold px-6 py-3 rounded-full transition-colors">Call {settings.phone}</a>}
+          </div>
         </div>
       </section>
 

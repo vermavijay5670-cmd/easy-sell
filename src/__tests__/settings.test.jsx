@@ -23,7 +23,7 @@ afterEach(() => cleanup())
 const base = { shop_name: 'Shop', phone: '', email: '', address: '', tagline: 't', instagram: '', facebook: '', whatsapp: '', testimonials: [], hero_badge: 'b', hero_title: 'T', hero_subtitle: 's' }
 
 describe('settings defaults', () => {
-  it('a fresh database row falls back to the grocery defaults, but keeps blank contact details blank', async () => {
+  it('a fresh database row falls back to the plate-shop defaults, but keeps blank contact details blank', async () => {
     dbRow = { ...base, shop_name: 'Vikash Kirana Store', tagline: '', categories: null, hero_badge: '', hero_title: '', hero_subtitle: '' }
     let s
     const P = () => { s = useSettings(); return null }
@@ -31,7 +31,7 @@ describe('settings defaults', () => {
     expect(s.shopName).toBe('Vikash Kirana Store')
     expect(s.settings.categories).toEqual(DEFAULT_CATEGORIES)
     expect(s.categories[0].id).toBe('all')
-    expect(s.settings.hero_title).toMatch(/Grocery/)
+    expect(s.settings.hero_title).toMatch(/Disposable Plates/)
     expect(s.settings.phone).toBe('')
     expect(s.settings.address).toBe('')
   })

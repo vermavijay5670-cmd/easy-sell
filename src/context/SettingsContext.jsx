@@ -3,30 +3,24 @@ import { supabase, supabaseConfigured } from '../lib/supabase'
 
 const SettingsContext = createContext()
 
-// Default shop categories (general grocery). The admin can change these in Shop Settings.
+// Default shop categories (disposable plates & tableware). The admin can change these in Shop Settings.
 // `id` is what products store, so it never changes once created; only name/icon can be edited.
 export const DEFAULT_CATEGORIES = [
-  { id: 'rice-atta', name: 'Rice & Atta', icon: '🌾' },
-  { id: 'dal', name: 'Dal & Pulses', icon: '🫘' },
-  { id: 'oil', name: 'Oil & Ghee', icon: '🫒' },
-  { id: 'whole-spices', name: 'Whole Spices', icon: '🌶️' },
-  { id: 'ground-spices', name: 'Ground Spices', icon: '🫙' },
-  { id: 'vegetables', name: 'Vegetables', icon: '🥕' },
-  { id: 'leafy', name: 'Leafy Greens', icon: '🥬' },
-  { id: 'herbs', name: 'Herbs', icon: '🌿' },
-  { id: 'fruits', name: 'Fruits', icon: '🍅' },
-  { id: 'dairy', name: 'Dairy & Eggs', icon: '🥛' },
-  { id: 'snacks', name: 'Snacks & Biscuits', icon: '🍪' },
-  { id: 'beverages', name: 'Tea, Coffee & Drinks', icon: '☕' },
-  { id: 'household', name: 'Household & Cleaning', icon: '🧼' },
+  { id: 'areca-plates', name: 'Areca Leaf Plates', icon: '🍃' },
+  { id: 'paper-plates', name: 'Paper Plates', icon: '🍽️' },
+  { id: 'plant-based', name: 'Sugarcane & Plant-based', icon: '🌱' },
+  { id: 'bowls', name: 'Bowls & Katoris', icon: '🥣' },
+  { id: 'cups', name: 'Cups & Glasses', icon: '🥤' },
+  { id: 'cutlery', name: 'Spoons & Cutlery', icon: '🥄' },
+  { id: 'packaging', name: 'Napkins & Food Boxes', icon: '📦' },
 ]
 
 export const DEFAULT_SETTINGS = {
-  hero_badge: '🛒 Daily needs, delivered',
-  hero_title: 'Your Neighbourhood Grocery,\nDelivered to Your Door',
-  hero_subtitle: 'Rice, dal, oil, spices, fresh vegetables and everyday essentials. Order online and we will bring it to your home.',
+  hero_badge: '🌱 Eco-friendly tableware',
+  hero_title: 'Disposable Plates Made from\nPaper & Plants',
+  hero_subtitle: 'Areca leaf, sugarcane and paper plates, bowls and cups for weddings, parties, restaurants and everyday use. Strong, food-safe and kind to the planet.',
   categories: DEFAULT_CATEGORIES,
-  shop_name: 'GreenBasket',
+  shop_name: 'EcoPlate',
   phone: '',
   email: '',
   address: '',
@@ -34,7 +28,7 @@ export const DEFAULT_SETTINGS = {
   facebook: '',
   whatsapp: '',
   testimonials: [], // [{ name, city, text, stars }] - real reviews added by the admin
-  tagline: 'Your neighbourhood grocery store: everyday essentials, fresh produce and quality staples delivered to your doorstep.',
+  tagline: 'Eco-friendly disposable plates, bowls and cups made from areca leaf, sugarcane and paper. Retail and bulk orders delivered to your door.',
 }
 const FIELDS = Object.keys(DEFAULT_SETTINGS)
 const CACHE_KEY = 'shop-settings'
@@ -93,7 +87,7 @@ export function SettingsProvider({ children }) {
   }
 
   // categories for filters: "All" first, then the shop's own
-  const categories = [{ id: 'all', name: 'All', icon: '🛒' }, ...settings.categories]
+  const categories = [{ id: 'all', name: 'All', icon: '🍽️' }, ...settings.categories]
 
   return (
     <SettingsContext.Provider value={{ settings, shopName: settings.shop_name, categories, status, updateSettings }}>

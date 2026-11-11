@@ -5,7 +5,7 @@
 -- =============================================================
 CREATE TABLE IF NOT EXISTS shop_settings (
   id INTEGER PRIMARY KEY DEFAULT 1 CHECK (id = 1),   -- single row
-  shop_name TEXT NOT NULL DEFAULT 'GreenBasket',
+  shop_name TEXT NOT NULL DEFAULT 'EcoPlate',
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 INSERT INTO shop_settings (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
@@ -22,7 +22,7 @@ CREATE POLICY "Admin can update settings" ON shop_settings FOR UPDATE USING (pub
 ALTER TABLE shop_settings ADD COLUMN IF NOT EXISTS phone TEXT NOT NULL DEFAULT '';
 ALTER TABLE shop_settings ADD COLUMN IF NOT EXISTS email TEXT NOT NULL DEFAULT '';
 ALTER TABLE shop_settings ADD COLUMN IF NOT EXISTS address TEXT NOT NULL DEFAULT '';
-ALTER TABLE shop_settings ADD COLUMN IF NOT EXISTS tagline TEXT NOT NULL DEFAULT 'Your trusted source for farm-fresh vegetables, herbs, and authentic spices delivered straight to your doorstep.';
+ALTER TABLE shop_settings ADD COLUMN IF NOT EXISTS tagline TEXT NOT NULL DEFAULT 'Eco-friendly disposable plates, bowls and cups made from areca leaf, sugarcane and paper. Retail and bulk orders delivered to your door.';
 
 -- Social links + customer reviews (added later; safe to re-run)
 ALTER TABLE shop_settings ADD COLUMN IF NOT EXISTS instagram TEXT NOT NULL DEFAULT '';
@@ -49,3 +49,9 @@ ALTER TABLE shop_settings ALTER COLUMN address SET DEFAULT '';
 UPDATE shop_settings SET phone = ''   WHERE phone = '+91 98765 43210';
 UPDATE shop_settings SET email = ''   WHERE email = 'hello@greenbasket.in';
 UPDATE shop_settings SET address = '' WHERE address = E'123, Fresh Market Lane,\nBengaluru, Karnataka 560001';
+
+-- grocery -> disposable plates: replace the old default name and footer text (only if never customised)
+UPDATE shop_settings SET shop_name = 'EcoPlate' WHERE shop_name = 'GreenBasket';
+UPDATE shop_settings SET tagline = 'Eco-friendly disposable plates, bowls and cups made from areca leaf, sugarcane and paper. Retail and bulk orders delivered to your door.'
+WHERE tagline IN ('Your neighbourhood grocery store: everyday essentials, fresh produce and quality staples delivered to your doorstep.',
+                  'Your trusted source for farm-fresh vegetables, herbs, and authentic spices delivered straight to your doorstep.');

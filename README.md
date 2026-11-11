@@ -1,6 +1,6 @@
-# Online Grocery Store (React + Vite + Supabase)
+# Disposable Plates Store (React + Vite + Supabase)
 
-A mobile-friendly online shop for a local grocery / kirana store. Customers browse products, sign up, order with cash on delivery and track their orders. The shopkeeper manages everything from an admin panel.
+A mobile-friendly online shop for eco-friendly disposable plates, bowls and cups (areca leaf, sugarcane, paper). Customers browse products, sign up, order with cash on delivery and track their orders. The shopkeeper manages everything from an admin panel.
 
 **Customer side:** product browsing and search, cart, login/signup, forgot password, checkout (login required), live order tracking, cancel a pending order, "Order again", and a downloadable PDF order slip once the shop confirms the order.
 
@@ -115,7 +115,7 @@ All the database files are in the project folder. For **each file below, in this
 
 | # | File | What it does |
 |---|------|--------------|
-| 1 | `supabase-schema.sql` | Creates the products and orders tables and adds 24 sample products. Orders stay locked until file 2. |
+| 1 | `supabase-schema.sql` | Creates the products and orders tables and adds 20 sample plate products (no photos). Orders stay locked until file 2. |
 | 2 | `supabase-migration-customer-auth.sql` | Customer accounts, order history, the admin list, access rules |
 | 3 | `supabase-migration-order-safety.sql` | Server-side prices, stock reduction, limit of 5 pending orders |
 | 4 | `supabase-migration-products.sql` | Admin can delete products, photo storage for product pictures |
@@ -146,7 +146,9 @@ select
 
 If `orders_insert`, `admins_read` or `products_read` is `false`, run file 8 again. If `is_admin_function` is `false`, run file 2. If `hardening_applied` is `false`, run file 9.
 
-The 24 sample products are vegetables and spices with stock photos. The client should replace them with their real products from the admin panel.
+The 20 sample products are disposable plates, bowls, cups and cutlery, without photos (a plate icon shows until you upload one). The client should replace them with their real products and photos from the admin panel.
+
+**Already set up with the old grocery version?** Re-run `supabase-migration-settings.sql` (renames the shop to EcoPlate and updates the footer text), then run `supabase-seed-plates.sql` once. It removes the old grocery sample products and adds the plate samples. Products you added yourself are kept. You can also change the shop name, banner text and categories any time in Admin → Shop Settings.
 
 ---
 
