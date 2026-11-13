@@ -3,24 +3,26 @@ import { supabase, supabaseConfigured } from '../lib/supabase'
 
 const SettingsContext = createContext()
 
-// Default shop categories (disposable plates & tableware). The admin can change these in Shop Settings.
+// Default shop categories for punched/perforated metal plates.
 // `id` is what products store, so it never changes once created; only name/icon can be edited.
 export const DEFAULT_CATEGORIES = [
-  { id: 'areca-plates', name: 'Areca Leaf Plates', icon: '🍃' },
-  { id: 'paper-plates', name: 'Paper Plates', icon: '🍽️' },
-  { id: 'plant-based', name: 'Sugarcane & Plant-based', icon: '🌱' },
-  { id: 'bowls', name: 'Bowls & Katoris', icon: '🥣' },
-  { id: 'cups', name: 'Cups & Glasses', icon: '🥤' },
-  { id: 'cutlery', name: 'Spoons & Cutlery', icon: '🥄' },
-  { id: 'packaging', name: 'Napkins & Food Boxes', icon: '📦' },
+  { id: 'round-plates', name: 'Round Punched Plates', icon: '⭕' },
+  { id: 'square-plates', name: 'Square Punched Plates', icon: '⬜' },
+  { id: 'rectangular-plates', name: 'Rectangular Plates', icon: '▬' },
+  { id: 'custom-shapes', name: 'Custom Shapes', icon: '🔷' },
+  { id: 'fine-mesh', name: 'Fine Mesh / Micro Holes', icon: '🔲' },
+  { id: 'heavy-duty', name: 'Heavy Duty / Thick Gauge', icon: '🏗️' },
+  { id: 'stainless-steel', name: 'Stainless Steel', icon: '✨' },
+  { id: 'mild-steel', name: 'Mild Steel', icon: '🔩' },
+  { id: 'aluminium', name: 'Aluminium Plates', icon: '🪙' },
 ]
 
 export const DEFAULT_SETTINGS = {
-  hero_badge: '🌱 Eco-friendly tableware',
-  hero_title: 'Disposable Plates Made from\nPaper & Plants',
-  hero_subtitle: 'Areca leaf, sugarcane and paper plates, bowls and cups for weddings, parties, restaurants and everyday use. Strong, food-safe and kind to the planet.',
+  hero_badge: '🏭 Industrial-Grade Punched Plates',
+  hero_title: 'Precision Punched Metal Plates\nfor Every Application',
+  hero_subtitle: 'High-quality perforated metal plates in stainless steel, mild steel & aluminium. Available in round, square and rectangular hole patterns. Bulk orders welcome.',
   categories: DEFAULT_CATEGORIES,
-  shop_name: 'EcoPlate',
+  shop_name: 'MetalPunch Pro',
   phone: '',
   email: '',
   address: '',
@@ -28,7 +30,7 @@ export const DEFAULT_SETTINGS = {
   facebook: '',
   whatsapp: '',
   testimonials: [], // [{ name, city, text, stars }] - real reviews added by the admin
-  tagline: 'Eco-friendly disposable plates, bowls and cups made from areca leaf, sugarcane and paper. Retail and bulk orders delivered to your door.',
+  tagline: 'Premium perforated metal plates & sheets in various hole sizes, patterns and materials. Industrial supply for filtration, construction, architecture and manufacturing.',
 }
 const FIELDS = Object.keys(DEFAULT_SETTINGS)
 const CACHE_KEY = 'shop-settings'

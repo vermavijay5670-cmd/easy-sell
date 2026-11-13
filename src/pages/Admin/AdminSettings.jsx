@@ -21,7 +21,7 @@ const makeId = (name, taken) => {
   return id
 }
 
-const input = 'w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400'
+const input = 'w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400'
 const label = 'block text-sm font-medium text-gray-700 mb-1'
 
 // Wait for the real saved values before showing the form; otherwise the form would start
@@ -141,8 +141,8 @@ function SettingsForm() {
           </div>
           <div>
             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Preview</p>
-            <div className="bg-gradient-to-r from-green-700 to-emerald-600 rounded-xl px-4 py-3 flex items-center gap-2 text-white font-bold text-xl">
-              <Leaf className="w-6 h-6 text-green-200" />
+            <div className="bg-slate-900 rounded-xl px-4 py-3 flex items-center gap-2 text-white font-bold text-xl">
+              <span className="w-7 h-7 rounded-lg bg-amber-500 flex items-center justify-center text-slate-900 text-sm">⚙</span>
               <span className="tracking-tight truncate">{form.shop_name.trim() || '—'}</span>
             </div>
           </div>

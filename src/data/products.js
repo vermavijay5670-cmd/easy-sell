@@ -1,22 +1,37 @@
 export const products = [
-  { id: 1, name: "Areca Leaf Round Plate 10\"", category: "areca-plates", price: 189, unit: "Pack of 25", stock: 200, image: null, description: "Pressed from fallen areca palm leaves. Sturdy, leak-proof and fully compostable.", badge: "Eco" },
-  { id: 2, name: "Areca Leaf Round Plate 8\"", category: "areca-plates", price: 149, unit: "Pack of 25", stock: 250, image: null, description: "Smaller round plate for snacks, sweets and starters.", badge: null },
-  { id: 3, name: "Areca Leaf Square Plate 9\"", category: "areca-plates", price: 199, unit: "Pack of 25", stock: 150, image: null, description: "Deep-pressed square plate with a neat rim. Looks great at weddings and events.", badge: "Premium" },
-  { id: 4, name: "Areca Leaf Thali Plate 12\"", category: "areca-plates", price: 299, unit: "Pack of 25", stock: 100, image: null, description: "Large thali-size plate for full meals. Holds hot and oily food without bending.", badge: "Bestseller" },
-  { id: 5, name: "Paper Plate Round 9\" (Plain)", category: "paper-plates", price: 89, unit: "Pack of 50", stock: 400, image: null, description: "Everyday white paper plate, good for parties, picnics and street food.", badge: "Bestseller" },
-  { id: 6, name: "Paper Plate Round 7\" (Plain)", category: "paper-plates", price: 69, unit: "Pack of 50", stock: 400, image: null, description: "Light plate for snacks, sweets and desserts.", badge: null },
-  { id: 7, name: "Printed Paper Plate 9\"", category: "paper-plates", price: 109, unit: "Pack of 50", stock: 300, image: null, description: "Colourful printed design for birthdays and festivals.", badge: null },
-  { id: 8, name: "Heavy Duty Paper Plate 10\" (Coated)", category: "paper-plates", price: 159, unit: "Pack of 50", stock: 200, image: null, description: "Thick coated plate that does not go soggy with gravy.", badge: "Sturdy" },
-  { id: 9, name: "Sugarcane Bagasse Plate 10\"", category: "plant-based", price: 229, unit: "Pack of 25", stock: 150, image: null, description: "Made from sugarcane waste. Microwave safe and compostable.", badge: "Eco" },
-  { id: 10, name: "Sugarcane Bagasse Bowl 350 ml", category: "plant-based", price: 199, unit: "Pack of 25", stock: 150, image: null, description: "Compostable bowl for dal, curry, rice and desserts.", badge: "Eco" },
-  { id: 11, name: "Palm Leaf Bowl Round 5\"", category: "bowls", price: 139, unit: "Pack of 25", stock: 180, image: null, description: "Natural leaf bowl, ideal for sabzi, raita and sweets.", badge: null },
-  { id: 12, name: "Paper Bowl 250 ml", category: "bowls", price: 79, unit: "Pack of 50", stock: 350, image: null, description: "Coated paper bowl for soups, ice cream and snacks.", badge: null },
-  { id: 13, name: "Paper Bowl 500 ml with Lid", category: "bowls", price: 149, unit: "Pack of 25", stock: 200, image: null, description: "Leak-resistant bowl with lid for takeaway and delivery.", badge: "Takeaway" },
-  { id: 14, name: "Paper Cup 150 ml (Tea)", category: "cups", price: 59, unit: "Pack of 50", stock: 500, image: null, description: "Hot-drink paper cup for tea and coffee stalls.", badge: "Bestseller" },
-  { id: 15, name: "Paper Cup 250 ml", category: "cups", price: 89, unit: "Pack of 50", stock: 400, image: null, description: "Double-wall feel, comfortable to hold with hot drinks.", badge: null },
-  { id: 16, name: "Paper Glass 200 ml (Cold)", category: "cups", price: 69, unit: "Pack of 50", stock: 400, image: null, description: "Cold drinks, lassi and juice. Food-grade coating.", badge: null },
-  { id: 17, name: "Wooden Spoon Set", category: "cutlery", price: 129, unit: "Pack of 50", stock: 250, image: null, description: "Smooth birchwood spoons. A plastic-free alternative.", badge: "Eco" },
-  { id: 18, name: "Wooden Fork & Knife Set", category: "cutlery", price: 169, unit: "Pack of 25 sets", stock: 200, image: null, description: "Natural wooden cutlery for events and takeaway.", badge: null },
-  { id: 19, name: "Paper Napkin / Tissue", category: "packaging", price: 99, unit: "Pack of 100", stock: 500, image: null, description: "Soft white napkins for tables and takeaway.", badge: null },
-  { id: 20, name: "Kraft Food Box with Window", category: "packaging", price: 249, unit: "Pack of 25", stock: 120, image: null, description: "Grease-resistant kraft box, good for snacks, cakes and meals.", badge: "Takeaway" }
+  // Round Punched Plates
+  { id: 1,  name: 'SS Round Hole Punched Plate 1000×500 mm — 3mm hole, 1.5mm pitch', category: 'round-plates', price: 1850, unit: 'Per Sheet (1mm thick)', stock: 120, image: null, description: 'Stainless steel 304 perforated sheet with 3mm round holes on 5mm pitch. Ideal for filtration, sieves and architectural grilles.', badge: 'Bestseller' },
+  { id: 2,  name: 'SS Round Hole Punched Plate 1000×500 mm — 5mm hole, 8mm pitch', category: 'round-plates', price: 1620, unit: 'Per Sheet (1mm thick)', stock: 90,  image: null, description: '5mm round holes on 8mm staggered pitch. Good for ventilation panels, speaker grilles and industrial screens.', badge: null },
+  { id: 3,  name: 'MS Round Hole Punched Plate 1200×600 mm — 6mm hole', category: 'round-plates', price: 980,  unit: 'Per Sheet (1.2mm thick)', stock: 200, image: null, description: 'Mild steel perforated sheet with 6mm round holes. Galvanised finish available on request.', badge: null },
+  { id: 4,  name: 'SS Round Hole Punched Plate 2000×1000 mm — 10mm hole', category: 'round-plates', price: 4200, unit: 'Per Sheet (1.5mm thick)', stock: 60,  image: null, description: 'Large-format 304 SS sheet with 10mm holes — popular for safety guards, partition screens and machine guards.', badge: 'Heavy' },
+
+  // Square Punched Plates
+  { id: 5,  name: 'SS Square Hole Punched Plate 1000×500 mm — 5×5mm holes', category: 'square-plates', price: 2100, unit: 'Per Sheet (1mm thick)', stock: 80,  image: null, description: 'Precision-punched square holes in 304 SS. Used in sorting screens, radiator covers and decorative facades.', badge: 'Premium' },
+  { id: 6,  name: 'MS Square Hole Punched Plate 1200×600 mm — 8×8mm holes', category: 'square-plates', price: 1150, unit: 'Per Sheet (1.2mm thick)', stock: 150, image: null, description: 'Mild steel square-hole sheet with clean cut edges. Powder-coated finish available.', badge: null },
+  { id: 7,  name: 'Aluminium Square Hole Punched Plate 1000×500 mm — 4×4mm holes', category: 'square-plates', price: 2650, unit: 'Per Sheet (1mm thick)', stock: 50,  image: null, description: 'Lightweight aluminium sheet, anodised natural finish. Great for HVAC, false ceilings and furniture.', badge: 'Lightweight' },
+
+  // Rectangular Plates
+  { id: 8,  name: 'SS Rectangular Hole Punched Plate 1000×500 mm — 10×5mm slots', category: 'rectangular-plates', price: 2300, unit: 'Per Sheet (1mm thick)', stock: 70,  image: null, description: 'Oblong slot holes for high airflow applications — heaters, oven liners and exhaust panels.', badge: null },
+  { id: 9,  name: 'MS Rectangular Hole Punched Plate 1200×600 mm — 15×6mm slots', category: 'rectangular-plates', price: 1380, unit: 'Per Sheet (1.5mm thick)', stock: 100, image: null, description: 'Larger slot holes for agriculture sieves, conveyor guards and grain separators.', badge: null },
+
+  // Fine Mesh / Micro Holes
+  { id: 10, name: 'SS Micro-Hole Punched Plate 500×500 mm — 1mm holes', category: 'fine-mesh', price: 3200, unit: 'Per Sheet (0.8mm thick)', stock: 40,  image: null, description: 'Ultra-fine 1mm round perforations for laboratory filtration, sugar refining and pharmaceutical sieving.', badge: 'Precision' },
+  { id: 11, name: 'SS Fine Mesh Plate 1000×500 mm — 1.5mm holes, 2.5mm pitch', category: 'fine-mesh', price: 2800, unit: 'Per Sheet (0.8mm thick)', stock: 55,  image: null, description: 'Fine-pattern perforated sheet for sound dampening panels, acoustic ceilings and air-purifier filters.', badge: null },
+
+  // Heavy Duty / Thick Gauge
+  { id: 12, name: 'MS Heavy Duty Punched Plate 1200×600 mm — 12mm holes (3mm thick)', category: 'heavy-duty', price: 3500, unit: 'Per Sheet', stock: 45,  image: null, description: 'Extra-thick mild steel plate for industrial machine guards, mining screens and heavy-load platforms.', badge: 'Heavy Duty' },
+  { id: 13, name: 'SS Heavy Duty Punched Plate 1000×500 mm — 8mm holes (2mm thick)', category: 'heavy-duty', price: 4800, unit: 'Per Sheet', stock: 30,  image: null, description: 'Marine-grade 316 SS, 2mm thick with 8mm punched holes. Corrosion-resistant for offshore and food processing.', badge: 'Marine Grade' },
+
+  // Stainless Steel
+  { id: 14, name: 'SS 304 Polished Punched Plate 500×500 mm — 3mm holes', category: 'stainless-steel', price: 1950, unit: 'Per Sheet (1mm thick)', stock: 110, image: null, description: 'Mirror-polished 304 stainless steel punched plate for decorative and architectural use.', badge: 'Polished' },
+  { id: 15, name: 'SS 316 Anti-corrosion Punched Plate 1000×500 mm — 5mm holes', category: 'stainless-steel', price: 3100, unit: 'Per Sheet (1.2mm thick)', stock: 65,  image: null, description: '316 grade for coastal, chemical and food-contact environments. Passes FDA food-safe standards.', badge: 'Food Safe' },
+
+  // Mild Steel
+  { id: 16, name: 'MS Punched Plate 1000×500 mm — 6mm holes (Hot Dip Galvanised)', category: 'mild-steel', price: 1200, unit: 'Per Sheet (1.5mm thick)', stock: 180, image: null, description: 'Hot-dip galvanised mild steel perforated plate. Rust-free for 15+ years outdoors.', badge: 'Galvanised' },
+  { id: 17, name: 'MS Punched Plate 1200×600 mm — 8mm holes (Powder Coated Black)', category: 'mild-steel', price: 1450, unit: 'Per Sheet (1.5mm thick)', stock: 130, image: null, description: 'Powder-coated matte black finish for interior architecture, furniture and partition walls.', badge: 'Black Coated' },
+
+  // Aluminium
+  { id: 18, name: 'Aluminium Punched Plate 1000×500 mm — 3mm holes', category: 'aluminium', price: 2200, unit: 'Per Sheet (1mm thick)', stock: 85,  image: null, description: 'Lightweight 5052 aluminium sheet with 3mm punched holes. Used in aircraft interiors and automotive panels.', badge: null },
+  { id: 19, name: 'Aluminium Punched Plate 1000×500 mm — 6mm holes (Anodised)', category: 'aluminium', price: 2700, unit: 'Per Sheet (1.5mm thick)', stock: 60,  image: null, description: 'Anodised aluminium for UV and corrosion resistance. Ideal for façade cladding and decorative screens.', badge: 'Anodised' },
+  { id: 20, name: 'Aluminium Micro Punched Plate 500×500 mm — 1.5mm holes', category: 'aluminium', price: 3400, unit: 'Per Sheet (1mm thick)', stock: 35,  image: null, description: 'Fine 1.5mm round perforations in aluminium for speaker grilles, air diffusers and instrument panels.', badge: 'Precision' },
 ]

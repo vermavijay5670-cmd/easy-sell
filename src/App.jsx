@@ -45,7 +45,7 @@ function AppLayout() {
     <>
       {!isStandalone && <Navbar onSearch={setGlobalSearch} />}
       <CartSidebar />
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-slate-50">
         <Suspense fallback={<div className="flex items-center justify-center min-h-[50vh] text-gray-400">Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -83,7 +83,7 @@ export default function App() {
           position="top-right"
           toastOptions={{
             duration: 3000,
-            style: { borderRadius: '12px', fontSize: '14px' },
+            style: { borderRadius: '10px', fontSize: '14px', background: '#1e293b', color: '#fff' },
           }}
         />
         <AppLayout />

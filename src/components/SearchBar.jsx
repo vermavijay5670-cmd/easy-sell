@@ -19,13 +19,13 @@ export default function SearchBar({ onSearch, value, onChange }) {
 
   return (
     <div className="relative">
-      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
       <input
         type="text"
-        placeholder="Search products..."
+        placeholder="Search plates, materials, sizes..."
         value={query}
         onChange={handleChange}
-        className="w-full pl-9 pr-8 py-2 text-sm rounded-full border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-green-400 transition"
+        className="w-full pl-9 pr-8 py-2 text-sm rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-400 transition placeholder-slate-400"
       />
       {query && (
         <button onClick={clear} aria-label="Clear search" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">

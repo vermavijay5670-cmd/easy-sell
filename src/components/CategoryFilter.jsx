@@ -8,10 +8,10 @@ export default function CategoryFilter({ selected, onSelect }) {
         <button
           key={cat.id}
           onClick={() => onSelect(cat.id)}
-          className={`flex items-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all border
+          className={`flex items-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-lg text-sm font-semibold transition-all border
             ${selected === cat.id
-              ? 'bg-green-600 text-white border-green-600 shadow-sm'
-              : 'bg-white text-gray-600 border-gray-200 hover:border-green-400 hover:text-green-700'
+              ? 'bg-slate-900 text-amber-400 border-slate-900 shadow-sm'
+              : 'bg-white text-slate-600 border-slate-200 hover:border-amber-400 hover:text-amber-600'
             }`}
         >
           <span>{cat.icon}</span>
