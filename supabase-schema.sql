@@ -105,17 +105,8 @@ DO $$ BEGIN
   END IF;
 END $$;
 
--- Orders: customers can place new orders (insert only; reading requires auth)
-DO $$ BEGIN
-  IF NOT EXISTS (
-    SELECT 1 FROM pg_policies
-    WHERE schemaname = 'public' AND tablename = 'orders'
-      AND policyname = 'Anyone can place an order'
-  ) THEN
-    CREATE POLICY "Anyone can place an order"
-      ON orders FOR INSERT WITH CHECK (true);
-  END IF;
-END $$;
+-- Orders: NO policy here on purpose. Orders stay locked (nobody can read or write them)
+-- until supabase-migration-customer-auth.sql adds the real rules (own orders / admin only).
 
 -- ─────────────────────────────────────────────────────────────
 -- 5. SEED — Default shop settings row

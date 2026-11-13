@@ -31,7 +31,7 @@ describe('settings defaults', () => {
     expect(s.shopName).toBe('Vikash Kirana Store')
     expect(s.settings.categories).toEqual(DEFAULT_CATEGORIES)
     expect(s.categories[0].id).toBe('all')
-    expect(s.settings.hero_title).toMatch(/Disposable Plates/)
+    expect(s.settings.hero_title).toMatch(/Punched/)
     expect(s.settings.phone).toBe('')
     expect(s.settings.address).toBe('')
   })

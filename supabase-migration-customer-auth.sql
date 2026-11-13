@@ -54,6 +54,7 @@ CREATE TRIGGER orders_status_upd BEFORE UPDATE ON orders FOR EACH ROW EXECUTE FU
 
 -- 4. Replace the old "any authenticated user is admin" policies
 DROP POLICY IF EXISTS "Anyone can place orders" ON orders;
+DROP POLICY IF EXISTS "Anyone can place an order" ON orders;
 DROP POLICY IF EXISTS "Admin can view all orders" ON orders;
 DROP POLICY IF EXISTS "Admin can update orders" ON orders;
 DROP POLICY IF EXISTS "Admin can update products" ON products;

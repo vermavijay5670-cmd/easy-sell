@@ -23,6 +23,7 @@ END $$;
 
 -- 1. Old open policies (only exist if the customer-auth migration was skipped)
 DROP POLICY IF EXISTS "Anyone can place orders" ON orders;
+DROP POLICY IF EXISTS "Anyone can place an order" ON orders;
 DROP POLICY IF EXISTS "Admin can view all orders" ON orders;
 
 -- 2. Order abuse limits (same function as order-safety, plus the new checks)
