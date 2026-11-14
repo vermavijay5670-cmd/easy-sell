@@ -5,7 +5,7 @@ import { useSettings } from '../context/SettingsContext'
 import toast from 'react-hot-toast'
 import { Leaf, Loader2 } from 'lucide-react'
 
-const input = 'w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400'
+const input = 'w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400'
 
 // Opened from the link in the "reset password" email. Supabase signs the user in
 // with a temporary recovery session, which lets us set a new password.
@@ -34,10 +34,10 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-amber-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-3xl shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-6">
-          <Link to="/" className="inline-flex items-center gap-2 text-green-700 font-bold text-xl mb-4">
+          <Link to="/" className="inline-flex items-center gap-2 text-amber-700 font-bold text-xl mb-4">
             <Leaf className="w-6 h-6" /> {shopName}
           </Link>
           <h1 className="text-2xl font-bold text-gray-800">Set a New Password</h1>
@@ -48,7 +48,7 @@ export default function ResetPassword() {
         ) : !customer ? (
           <div className="text-center space-y-3">
             <p className="text-sm text-gray-600">This reset link is invalid or has expired.</p>
-            <Link to="/login" className="inline-block text-green-600 font-semibold hover:underline text-sm">
+            <Link to="/login" className="inline-block text-amber-600 font-semibold hover:underline text-sm">
               Request a new link
             </Link>
           </div>
@@ -63,7 +63,7 @@ export default function ResetPassword() {
               <input id="reset-2" type="password" value={confirm} onChange={e => setConfirm(e.target.value)} className={input} />
             </div>
             <button type="submit" disabled={loading}
-              className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2">
+              className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2">
               {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Updating...</> : 'Update Password'}
             </button>
           </form>

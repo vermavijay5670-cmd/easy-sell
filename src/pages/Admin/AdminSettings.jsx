@@ -36,7 +36,7 @@ export default function AdminSettings() {
         : <>
             <p className="text-gray-700 font-medium mb-1">Couldn't load the current settings.</p>
             <p className="text-sm text-gray-500 mb-4">Make sure you've run <code>supabase-migration-settings.sql</code>, then refresh this page.</p>
-            <Link to="/admin/dashboard" className="text-green-600 hover:underline text-sm">← Back to dashboard</Link>
+            <Link to="/admin/dashboard" className="text-amber-600 hover:underline text-sm">← Back to dashboard</Link>
           </>}
     </div>
   )
@@ -122,7 +122,7 @@ function SettingsForm() {
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <h1 className="text-2xl font-bold text-gray-800">Shop Settings</h1>
-        <Link to="/" className="ml-auto flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors">
+        <Link to="/" className="ml-auto flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors">
           <ExternalLink className="w-3.5 h-3.5" /> View Website
         </Link>
       </div>
@@ -169,7 +169,7 @@ function SettingsForm() {
           <div className="flex items-start justify-between gap-3">
             <h2 className="font-semibold text-gray-800">Product Categories <span className="block sm:inline text-xs font-normal text-gray-400">(shown on the home page and as filters in the shop)</span></h2>
             {form.categories.length < 20 && (
-              <button type="button" onClick={addCategory} className="shrink-0 flex items-center gap-1 text-sm font-medium text-green-700 hover:bg-green-50 px-3 py-1.5 rounded-lg">
+              <button type="button" onClick={addCategory} className="shrink-0 flex items-center gap-1 text-sm font-medium text-amber-700 hover:bg-amber-50 px-3 py-1.5 rounded-lg">
                 <Plus className="w-4 h-4" /> Add
               </button>
             )}
@@ -232,7 +232,7 @@ function SettingsForm() {
           <div className="flex items-start justify-between gap-3">
             <h2 className="font-semibold text-gray-800">Customer Reviews <span className="block sm:inline text-xs font-normal text-gray-400">(only add real reviews. The home page section is hidden while this list is empty)</span></h2>
             {form.testimonials.length < 6 && (
-              <button type="button" onClick={addReview} className="shrink-0 flex items-center gap-1 text-sm font-medium text-green-700 hover:bg-green-50 px-3 py-1.5 rounded-lg">
+              <button type="button" onClick={addReview} className="shrink-0 flex items-center gap-1 text-sm font-medium text-amber-700 hover:bg-amber-50 px-3 py-1.5 rounded-lg">
                 <Plus className="w-4 h-4" /> Add
               </button>
             )}
@@ -262,7 +262,7 @@ function SettingsForm() {
         </div>
 
         <button type="submit" disabled={saving || !dirty}
-          className="bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white font-bold px-6 py-2.5 rounded-xl flex items-center gap-2">
+          className="bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white font-bold px-6 py-2.5 rounded-xl flex items-center gap-2">
           {saving ? <><Loader2 className="w-4 h-4 animate-spin" /> Saving...</> : 'Save Changes'}
         </button>
       </form>

@@ -152,6 +152,8 @@ The 20 sample products are disposable plates, bowls, cups and cutlery, without p
 
 ---
 
+**Already set up with an older version (grocery or plates)?** Do not start over. Run `supabase-switch-to-metal.sql` once in the SQL Editor. It adds the new product columns, resets the shop name, banner and categories to MetalPunch Pro, replaces the old sample products with the metal-plate samples, and keeps your orders. Then run `supabase-migration-hardening.sql`. The website reads the banner text, categories and products from your database, so a deployed site keeps showing the old content until you do this.
+
 ## 6. Login settings in Supabase
 
 In Supabase go to **Authentication**:

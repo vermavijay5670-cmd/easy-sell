@@ -52,6 +52,15 @@ CREATE TABLE IF NOT EXISTS products (
   sheet_length_mm INTEGER       -- length in mm
 );
 
+-- If the products table already existed from an older version of this project, add the plate columns.
+ALTER TABLE products ADD COLUMN IF NOT EXISTS material        TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS hole_shape      TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS hole_size_mm    DECIMAL(6,2);
+ALTER TABLE products ADD COLUMN IF NOT EXISTS pitch_mm        DECIMAL(6,2);
+ALTER TABLE products ADD COLUMN IF NOT EXISTS thickness_mm    DECIMAL(5,2);
+ALTER TABLE products ADD COLUMN IF NOT EXISTS sheet_width_mm  INTEGER;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS sheet_length_mm INTEGER;
+
 -- ─────────────────────────────────────────────────────────────
 -- 3. SHOP SETTINGS TABLE
 -- ─────────────────────────────────────────────────────────────

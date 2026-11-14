@@ -34,14 +34,14 @@ export default function AdminLogin() {
   if (!authLoading && admin) return <Navigate to="/admin/dashboard" replace />
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center p-4">
       <div className="relative bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm">
         <Link to="/" title="Back to website" className="absolute top-4 left-4 text-gray-400 hover:text-gray-700 transition-colors">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-green-100 rounded-2xl mb-3">
-            <Leaf className="w-7 h-7 text-green-600" />
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-amber-100 rounded-2xl mb-3">
+            <Leaf className="w-7 h-7 text-amber-600" />
           </div>
           <h1 className="text-2xl font-bold text-gray-800">Admin Login</h1>
           <p className="text-sm text-gray-500 mt-1">{shopName} Admin Panel</p>
@@ -56,7 +56,7 @@ export default function AdminLogin() {
               onChange={e => setEmail(e.target.value)}
               placeholder="admin@yourshop.com"
               required
-              className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
+              className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
             />
           </div>
           <div>
@@ -67,7 +67,7 @@ export default function AdminLogin() {
               onChange={e => setPassword(e.target.value)}
               placeholder="••••••••"
               required
-              className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
+              className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
             />
           </div>
 
@@ -80,7 +80,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2"
           >
             {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Signing in...</> : 'Sign In'}
           </button>

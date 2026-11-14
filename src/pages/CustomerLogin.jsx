@@ -17,7 +17,7 @@ function Field({ label, name, type, placeholder, value, onChange, error, rightEl
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className={`w-full border rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition pr-10 ${error ? 'border-red-400' : 'border-gray-300'}`}
+          className={`w-full border rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 transition pr-10 ${error ? 'border-red-400' : 'border-gray-300'}`}
         />
         {rightElement && <div className="absolute right-3 top-1/2 -translate-y-1/2">{rightElement}</div>}
       </div>
@@ -125,11 +125,11 @@ export default function CustomerLogin() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-amber-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-3xl shadow-xl p-8 w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-6">
-          <Link to="/" className="inline-flex items-center gap-2 text-green-700 font-bold text-xl mb-4">
+          <Link to="/" className="inline-flex items-center gap-2 text-amber-700 font-bold text-xl mb-4">
             <Leaf className="w-6 h-6" />
             {shopName}
           </Link>
@@ -149,7 +149,7 @@ export default function CustomerLogin() {
             <button
               key={t}
               onClick={() => { setTab(t); setErrors({}) }}
-              className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all ${tab === t ? 'bg-white text-green-700 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+              className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all ${tab === t ? 'bg-white text-amber-700 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
             >
               {t === 'login' ? 'Login' : 'Sign Up'}
             </button>
@@ -160,7 +160,7 @@ export default function CustomerLogin() {
         {tab === 'forgot' && (
           <form onSubmit={handleForgot} className="space-y-4">
             <Field label="Email Address" name="email" type="email" placeholder="you@example.com" value={form.email} onChange={handleChange} error={errors.email} />
-            <button type="submit" disabled={loading} className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+            <button type="submit" disabled={loading} className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
               {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending...</> : 'Send Reset Link'}
             </button>
             <button type="button" onClick={() => { setTab('login'); setErrors({}) }} className="w-full text-sm text-gray-500 hover:text-gray-700">
@@ -174,10 +174,10 @@ export default function CustomerLogin() {
           <form onSubmit={handleLogin} className="space-y-4">
             <Field label="Email Address" name="email" type="email" placeholder="you@example.com" value={form.email} onChange={handleChange} error={errors.email} />
             <Field label="Password" name="password" type={showPassword ? 'text' : 'password'} placeholder="••••••••" value={form.password} onChange={handleChange} error={errors.password} rightElement={eyeBtn} />
-            <button type="submit" disabled={loading} className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+            <button type="submit" disabled={loading} className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
               {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Logging in...</> : 'Login'}
             </button>
-            <button type="button" onClick={() => { setTab('forgot'); setErrors({}) }} className="w-full text-sm text-green-600 hover:underline">
+            <button type="button" onClick={() => { setTab('forgot'); setErrors({}) }} className="w-full text-sm text-amber-600 hover:underline">
               Forgot password?
             </button>
           </form>
@@ -190,14 +190,14 @@ export default function CustomerLogin() {
             <Field label="Email Address" name="email" type="email" placeholder="you@example.com" value={form.email} onChange={handleChange} error={errors.email} />
             <Field label="Password" name="password" type={showPassword ? 'text' : 'password'} placeholder="Min 6 characters" value={form.password} onChange={handleChange} error={errors.password} rightElement={eyeBtn} />
             <Field label="Confirm Password" name="confirmPassword" type={showPassword ? 'text' : 'password'} placeholder="Repeat password" value={form.confirmPassword} onChange={handleChange} error={errors.confirmPassword} />
-            <button type="submit" disabled={loading} className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+            <button type="submit" disabled={loading} className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
               {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Creating account...</> : 'Create Account'}
             </button>
           </form>
         )}
 
         <p className="text-center text-xs text-gray-400 mt-6">
-          <Link to="/" className="text-green-600 hover:underline">← Back to Shop</Link>
+          <Link to="/" className="text-amber-600 hover:underline">← Back to Shop</Link>
         </p>
       </div>
     </div>

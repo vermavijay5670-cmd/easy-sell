@@ -14,7 +14,7 @@ const INITIAL_FORM = {
 
 // ✅ Field is defined OUTSIDE Checkout so React never re-mounts it on state change
 function Field({ label, name, type, required, placeholder, as, value, onChange, error }) {
-  const inputClass = `w-full border rounded-xl px-3 py-2 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition ${error ? 'border-red-400' : 'border-gray-300'}`
+  const inputClass = `w-full border rounded-xl px-3 py-2 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${error ? 'border-red-400' : 'border-gray-300'}`
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -105,7 +105,7 @@ export default function Checkout() {
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
         <span className="text-6xl">🛒</span>
         <h2 className="text-xl font-bold text-gray-700 mt-4 mb-2">Your cart is empty!</h2>
-        <Link to="/products" className="text-green-600 hover:underline text-sm">Browse Products</Link>
+        <Link to="/products" className="text-amber-600 hover:underline text-sm">Browse Products</Link>
       </div>
     )
   }
@@ -224,9 +224,9 @@ export default function Checkout() {
           {/* Payment */}
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
             <h2 className="font-semibold text-gray-800 mb-4 text-lg">Payment Method</h2>
-            <div className="flex items-center gap-3 border-2 border-green-500 bg-green-50 rounded-xl p-4">
-              <div className="w-5 h-5 rounded-full border-2 border-green-600 flex items-center justify-center">
-                <div className="w-2.5 h-2.5 rounded-full bg-green-600" />
+            <div className="flex items-center gap-3 border-2 border-amber-500 bg-amber-50 rounded-xl p-4">
+              <div className="w-5 h-5 rounded-full border-2 border-amber-600 flex items-center justify-center">
+                <div className="w-2.5 h-2.5 rounded-full bg-amber-600" />
               </div>
               <div>
                 <p className="font-medium text-gray-800 text-sm">Cash on Delivery</p>
@@ -261,7 +261,7 @@ export default function Checkout() {
                     <p className="text-sm font-medium text-gray-700 line-clamp-1">{item.name}</p>
                     <p className="text-xs text-gray-400">x{item.quantity}</p>
                   </div>
-                  <span className="text-sm font-semibold text-green-700 shrink-0">₹{(item.price * item.quantity).toFixed(2)}</span>
+                  <span className="text-sm font-semibold text-amber-700 shrink-0">₹{(item.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -272,11 +272,11 @@ export default function Checkout() {
               </div>
               <div className="flex justify-between text-sm text-gray-500">
                 <span>Delivery</span>
-                <span className="text-green-600 font-medium">FREE</span>
+                <span className="text-amber-600 font-medium">FREE</span>
               </div>
               <div className="flex justify-between font-bold text-gray-800 text-base border-t pt-2">
                 <span>Total</span>
-                <span className="text-green-700">₹{cartTotal.toFixed(2)}</span>
+                <span className="text-amber-700">₹{cartTotal.toFixed(2)}</span>
               </div>
             </div>
           </div>

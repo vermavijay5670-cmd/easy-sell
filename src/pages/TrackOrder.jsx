@@ -35,23 +35,23 @@ export default function TrackOrder() {
     <div className="max-w-xl mx-auto px-4 sm:px-6 py-10">
       <h1 className="text-2xl font-bold text-gray-800 mb-1">Track Your Order</h1>
       <p className="text-sm text-gray-500 mb-6">
-        No account needed. Or <Link to="/login" className="text-green-600 hover:underline">log in</Link> to see all your orders.
+        No account needed. Or <Link to="/login" className="text-amber-600 hover:underline">log in</Link> to see all your orders.
       </p>
 
       <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4">
         <div>
           <label htmlFor="track-1" className="block text-sm font-medium text-gray-700 mb-1">Order ID</label>
           <input id="track-1" value={orderId} onChange={e => setOrderId(e.target.value)} placeholder="e.g. 3F9A1C2B"
-            className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm font-mono bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400" />
+            className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm font-mono bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400" />
         </div>
         <div>
           <label htmlFor="track-2" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
           <input id="track-2" value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="9876543210"
-            className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400" />
+            className="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400" />
         </div>
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <button type="submit" disabled={loading}
-          className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2">
+          className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2">
           {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Searching...</> : <><Search className="w-4 h-4" /> Track Order</>}
         </button>
       </form>
@@ -75,7 +75,7 @@ export default function TrackOrder() {
               </div>
             ))}
             <div className="flex justify-between font-bold text-gray-800 pt-2 border-t mt-2">
-              <span>Total</span><span className="text-green-700">₹{Number(order.total).toFixed(2)}</span>
+              <span>Total</span><span className="text-amber-700">₹{Number(order.total).toFixed(2)}</span>
             </div>
           </div>
         </div>

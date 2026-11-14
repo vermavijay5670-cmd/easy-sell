@@ -113,7 +113,7 @@ export default function ProductDetail() {
 
             {/* Stock indicator */}
             {product.stock > 0 && (
-              <div className="flex items-center gap-1.5 text-xs text-green-700 bg-green-50 border border-green-100 rounded-lg px-3 py-2 mb-5">
+              <div className="flex items-center gap-1.5 text-xs text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 mb-5">
                 <CheckCircle className="w-3.5 h-3.5" />
                 In stock — ready to ship
               </div>

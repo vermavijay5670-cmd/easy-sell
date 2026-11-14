@@ -85,7 +85,7 @@ function ProductModal({ product, onClose, onSaved, nextId, categories }) {
     }
   }
 
-  const input = 'w-full border border-gray-300 rounded-xl px-3 py-2 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400'
+  const input = 'w-full border border-gray-300 rounded-xl px-3 py-2 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400'
   const label = 'block text-sm font-medium text-gray-700 mb-1'
 
   return (
@@ -108,7 +108,7 @@ function ProductModal({ product, onClose, onSaved, nextId, categories }) {
             </div>
             <div className="flex flex-col gap-2">
               <button type="button" onClick={() => cameraRef.current?.click()}
-                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-xl">
+                className="flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium px-4 py-2 rounded-xl">
                 <Camera className="w-4 h-4" /> Take Photo
               </button>
               <button type="button" onClick={() => galleryRef.current?.click()}
@@ -144,7 +144,7 @@ function ProductModal({ product, onClose, onSaved, nextId, categories }) {
           <textarea id="prod-7" name="description" rows={3} value={form.description} onChange={set} className={input} /></div>
 
         <button type="submit" disabled={saving}
-          className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2">
+          className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2">
           {saving ? <><Loader2 className="w-4 h-4 animate-spin" /> Saving...</> : isEdit ? 'Save Changes' : 'Add Product'}
         </button>
       </form>
@@ -244,7 +244,7 @@ export default function AdminProducts() {
             <Plus className="w-4 h-4" /> Add Product
           </button>
           <Link to="/"
-            className="flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors">
+            className="flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium px-3 py-1.5 rounded-full transition-colors">
             <ExternalLink className="w-3.5 h-3.5" /> View Website
           </Link>
         </div>
@@ -263,7 +263,7 @@ export default function AdminProducts() {
           <p className="text-gray-600 font-medium mb-1">No products in the database yet</p>
           <p className="text-gray-400 text-sm mb-5">Until you add some, the shop shows its built-in list.</p>
           <div className="flex justify-center gap-3">
-            <button onClick={importDefaults} className="border border-green-600 text-green-700 hover:bg-green-50 text-sm font-semibold px-4 py-2 rounded-xl">
+            <button onClick={importDefaults} className="border border-amber-600 text-amber-700 hover:bg-amber-50 text-sm font-semibold px-4 py-2 rounded-xl">
               Import {localProducts.length} sample products
             </button>
             <button onClick={() => setModal('new')} className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-xl">
@@ -277,11 +277,11 @@ export default function AdminProducts() {
           <input
             value={query} onChange={e => setQuery(e.target.value)}
             placeholder="Search products by name" aria-label="Search products"
-            className="flex-1 border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="flex-1 border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400"
           />
           <select
             value={catFilter} onChange={e => setCatFilter(e.target.value)} aria-label="Filter by category"
-            className="border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="border border-gray-300 rounded-xl px-3 py-2.5 text-sm bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400"
           >
             <option value="all">All categories</option>
             {settings.categories.map(c => <option key={c.id} value={c.id}>{c.icon} {c.name}</option>)}
@@ -312,27 +312,27 @@ export default function AdminProducts() {
                     </div>
                   </td>
                   <td className="px-4 py-3 text-gray-500">{settings.categories.find(c => c.id === product.category)?.name || product.category}</td>
-                  <td className="px-4 py-3 text-green-700 font-semibold">₹{product.price}</td>
+                  <td className="px-4 py-3 text-amber-700 font-semibold">₹{product.price}</td>
                   <td className="px-4 py-3">
                     {product.stock === 0
                       ? <span className="block text-[10px] font-semibold text-red-600 mb-0.5">Out of stock</span>
                       : product.stock <= 5 && <span className="block text-[10px] font-semibold text-orange-600 mb-0.5">Low stock</span>}
                     <input type="number" min="0" value={product.stock} aria-label={`Stock for ${product.name}`}
                       onChange={e => handleStockChange(product.id, e.target.value)}
-                      className="w-20 border border-gray-200 rounded-lg px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-green-400" />
+                      className="w-20 border border-gray-200 rounded-lg px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400" />
                   </td>
                   <td className="px-4 py-3">
                     <button onClick={() => handleToggleActive(product.id)} aria-pressed={!!product.active}
                       aria-label={`${product.name}: ${product.active ? 'shown in shop, click to hide' : 'hidden, click to show'}`} className="transition-colors">
                       {product.active
-                        ? <ToggleRight className="w-6 h-6 text-green-600" />
+                        ? <ToggleRight className="w-6 h-6 text-amber-600" />
                         : <ToggleLeft className="w-6 h-6 text-gray-400" />}
                     </button>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
                       <button onClick={() => handleSave(product)} disabled={saving[product.id]}
-                        className="flex items-center gap-1 bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">
+                        className="flex items-center gap-1 bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">
                         <Save className="w-3.5 h-3.5" /> {saving[product.id] ? 'Saving...' : 'Save'}
                       </button>
                       <button onClick={() => setModal(product)} title="Edit"

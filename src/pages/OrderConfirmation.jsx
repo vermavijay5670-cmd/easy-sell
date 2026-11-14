@@ -13,13 +13,13 @@ export default function OrderConfirmation() {
   return (
     <div className="max-w-xl mx-auto px-4 sm:px-6 py-12">
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center">
-        <CheckCircle2 className="w-20 h-20 text-green-500 mx-auto mb-4" />
+        <CheckCircle2 className="w-20 h-20 text-amber-500 mx-auto mb-4" />
         <h1 className="text-2xl font-bold text-gray-800 mb-2">Order Placed Successfully!</h1>
         <p className="text-gray-500 text-sm mb-6">
           Thank you, <span className="font-semibold text-gray-700">{customerName}</span>! Your order has been received and will be delivered soon.
         </p>
 
-        <div className="bg-green-50 rounded-xl p-4 mb-6 text-left space-y-2">
+        <div className="bg-amber-50 rounded-xl p-4 mb-6 text-left space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-gray-500">Order ID</span>
             <span className="font-mono font-semibold text-gray-700 text-xs break-all">#{shortId}</span>
@@ -34,7 +34,7 @@ export default function OrderConfirmation() {
           </div>
           <div className="flex justify-between text-sm font-bold">
             <span className="text-gray-700">Total</span>
-            <span className="text-green-700">₹{Number(total).toFixed(2)}</span>
+            <span className="text-amber-700">₹{Number(total).toFixed(2)}</span>
           </div>
         </div>
 
@@ -53,13 +53,13 @@ export default function OrderConfirmation() {
 
         <Link
           to="/my-orders"
-          className="w-full inline-block border-2 border-green-600 text-green-700 hover:bg-green-50 font-semibold py-3 rounded-xl transition-colors mb-3"
+          className="w-full inline-block border-2 border-amber-600 text-amber-700 hover:bg-amber-50 font-semibold py-3 rounded-xl transition-colors mb-3"
         >
           Track This Order 🚚
         </Link>
         <Link
           to="/products"
-          className="w-full inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-xl transition-colors"
+          className="w-full inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-xl transition-colors"
         >
           Continue Shopping 🛒
         </Link>
